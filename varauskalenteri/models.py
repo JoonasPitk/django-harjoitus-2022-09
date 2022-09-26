@@ -63,5 +63,13 @@ class Tapahtuma(models.Model):
         self.osallistujat.add(user)
         return True
 
+    def poista_varaus (self, user):
+        if not self.onko_varattu(user):
+            return
+        self.osallistujat.remove(user)
+
     def onko_varattu(self, user):
+        """
+        Onko tämä tapahtuma varattu annetulle käyttäjälle?
+        """
         return (user in self.osallistujat.all())

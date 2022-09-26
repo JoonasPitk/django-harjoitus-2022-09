@@ -10,6 +10,11 @@
 
     {% if varattu %}
         Olet varannut paikkasi tapahtumaan!
+        <form method='post'>
+            {% csrf_token %}
+            <input type='hidden' name='toiminto' value='peru'/>
+            <input type='submit' value='Peru varaus'/>
+        </form>
     {% else %}
         <form method="post">
             {% csrf_token %}
