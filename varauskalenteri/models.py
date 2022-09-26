@@ -73,3 +73,11 @@ class Tapahtuma(models.Model):
         Onko tämä tapahtuma varattu annetulle käyttäjälle?
         """
         return (user in self.osallistujat.all())
+
+    @property
+    def onko_tilaa(self):
+        return self.varauksia < self.paikkoja
+
+    @property
+    def varauksia(self):
+        return self.osallistujat.count()
