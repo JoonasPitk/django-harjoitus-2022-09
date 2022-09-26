@@ -1,3 +1,4 @@
+{% load i18n %}
 <html>
     <h1>Varaa tapahtuma</h1>
     <h2>Tapahtuma: {{tapahtuma.otsikko}}</h2>
@@ -21,10 +22,14 @@
             <input type='hidden' name='toiminto' value='peru'/>
             <input type='submit' value='Peru varaus'/>
         </form>
-    {% else %}
+    {% elif tapahtuma.onko_tilaa %}
         <form method='post'>
             {% csrf_token %}
             <input type='submit' value='Osallistun!'/>
         </form>
+    {% else %}
+        Surku! Tapahtuma on täynnä.
     {% endif %}
+
+    <a href='{% url "etusivu" %}'>{% translate 'Go to the front page' %}</a>
 </html>
