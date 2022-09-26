@@ -16,8 +16,6 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
-from varauskalenteri.views import tapahtumalistaus, varaa_tapahtuma
-
 import varauskalenteri.urls
 
 urlpatterns = [
