@@ -2,9 +2,15 @@
     <h1>Varaa tapahtuma</h1>
     <h2>Tapahtuma: {{tapahtuma.otsikko}}</h2>
     <p>
-        {{tapahtuma.alku.date}}
-        klo {{tapahtuma.alku.time}},
-        kesto {{tapahtuma.kesto_tuntia|floatformat}} h
+        {% spaceless %}
+        <span>{{tapahtuma.alku.date}}</span>
+        <span> klo </span>
+        <span>{{tapahtuma.alku.time}}</span>
+        {% if tapahtuma.kesto %}
+            <span>, kesto </span>
+            <span>{{tapahtuma.kesto_tuntia|floatformat}} h</span>
+        {% endif %}
+        {% endspaceless %}
     </p>
     <p>{{tapahtuma.kuvaus}}</p>
 
@@ -16,9 +22,9 @@
             <input type='submit' value='Peru varaus'/>
         </form>
     {% else %}
-        <form method="post">
+        <form method='post'>
             {% csrf_token %}
-            <input type="submit" value="Osallistun!"/>
+            <input type='submit' value='Osallistun!'/>
         </form>
     {% endif %}
 </html>
