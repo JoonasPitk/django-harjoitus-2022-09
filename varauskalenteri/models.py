@@ -37,12 +37,16 @@ class Tapahtuma(models.Model):
         loppu_teksti = f'{loppu:%d.%m.%Y %H:%M}' if loppu else ''
         return f'{self.otsikko} ({alku:%d.%m.%Y %H:%M} -- {loppu_teksti})'
 
-    def kesto(self) -> datetime.timedelta:
+    @property
+    def kesto(self) -> datetime.timedelta | None:
+        if not self.loppu:
+            return None
         return self.loppu - self.alku
 
-    def kesto_tuntia(self):
-        kesto = self.kesto()
-        return kesto.total_seconds() / 3600
+    @property
+    def kesto_tuntia(self) -> float | None:
+        kesto = self.kesto
+        return kesto.total_seconds() / 3600 if kesto else None
 
     def varaa(self, user):
         """
