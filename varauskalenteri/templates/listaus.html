@@ -1,4 +1,5 @@
-<html>
+{% extends 'base.html' %}
+{% block content %}
     Valitse tapahtuma, johon haluat osallistua:
     <ul>
         {% for tapahtuma in tapahtumat %}
@@ -7,4 +8,4 @@
             </li>
         {% endfor %}
     </ul>
-</html>
+{% endblock %}
