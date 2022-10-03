@@ -1,7 +1,8 @@
+{% extends 'base.html'%}
 {% load i18n %}
-<html>
-    <h1>Varaa tapahtuma</h1>
-    <h2>Tapahtuma: {{tapahtuma.otsikko}}</h2>
+{% block title %}Varaa tapahtuma{% endblock %}
+{% block header %}Tapahtuma: {{tapahtuma.otsikko}}{% endblock %}
+{% block content %}
     <p>
         {% spaceless %}
         <span>{{tapahtuma.alku.date}}</span>
@@ -30,8 +31,4 @@
     {% else %}
         Surku! Tapahtuma on täynnä.
     {% endif %}
-
-    <a href="{% url 'tapahtumalistaus' %}"">
-        {% translate 'Go to the event list' %}
-    </a>
-</html>
+{% endblock %}
