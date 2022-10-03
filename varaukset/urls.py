@@ -20,7 +20,10 @@ import django_registration.backends.activation.urls
 
 import varauskalenteri.urls
 
+from .views import etusivu
+
 urlpatterns = [
+    path('', etusivu, name='etusivu'),
     path('tilit/', include(django_registration.backends.activation.urls)),
     path('tilit/', include(django.contrib.auth.urls)),
     path('varaus/', include(varauskalenteri.urls)),
